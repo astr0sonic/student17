@@ -20,5 +20,5 @@ std::vector<int> sieve(int n) {
     for(ptrdiff_t i = 0; i < n + 1; i++){
         if(input[i] != 0) result.push_back(input[i]);
     }
-    return input;
+    return result;
 }
