@@ -85,7 +85,7 @@ std::string infixtopostfix(std::string check){
 
 void pochit(std::stack<double> &cont, const char oper){
     double result = 0;
-    if(cont.size() < 2) throw std::logic_error("invalid");
+    if(cont.size() < 2){ std::cout << oper; throw std::logic_error("invalid");};
     double first = cont.top();
     cont.pop();
     double second = cont.top();
@@ -109,8 +109,12 @@ double calculatepostfix(const std::string postfix){
     double result = 0;
     for(ptrdiff_t i = 0; i < postfix.length(); i++){
         if(postfix[i] == ' ') continue;
-        if(postfix[i] >= '0' && postfix[i] <= '9') {
+        if((postfix[i] == '-' && i + 1 <= postfix.length() &&  postfix[i + 1] >= '0' && postfix[i + 1] <= '9') || (postfix[i] >= '0' && postfix[i] <= '9')) {
             std::string num = "";
+            if(postfix[i] == '-'){
+                num += '-';
+                i++;
+            }
             while(postfix[i] >= '0' && postfix[i] <= '9' || postfix[i] == '.'){
                 num += postfix[i++];    
             }            
@@ -122,7 +126,6 @@ double calculatepostfix(const std::string postfix){
     result = cont.top();
     return result;
 }
-
 double calculate(const std::string& expr) {
     std::string postfix = infixtopostfix(expr);
     double result = calculatepostfix(postfix);
