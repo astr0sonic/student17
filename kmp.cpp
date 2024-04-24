@@ -39,6 +39,7 @@ std::vector<int> KMP(const std::string& text, const std::string& pattern) {
     return result;
 }
 
+
 std::vector<int> getIndices(const std::string& my_template, const std::string& text) {
     std::vector<int>result = KMP(text, my_template);
     return result;
